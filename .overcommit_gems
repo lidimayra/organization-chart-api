@@ -1,0 +1,19 @@
+# This file is used when running "overcommit --run" (e.g. via CI)
+# The related lockfile for this Gemfile is .overcommit_gems.lock)
+#
+# To install gems for this Gemfile:
+#    BUNDLE_GEMFILE=.overcommit_gems bundle install
+#    BUNDLE_GEMFILE=.overcommit_gems bundle exec overcommit --install
+#    BUNDLE_GEMFILE=.overcommit_gems bundle exec overcommit --sign
+#
+# To update gems in this Gemfile:
+#    BUNDLE_GEMFILE=.overcommit_gems bundle update
+#
+# To use this Gemfile with overcommit:
+#    BUNDLE_GEMFILE=.overcommit_gems bundle exec overcommit --run
+
+source 'https://rubygems.org'
+
+gem 'overcommit'
+gem 'rubocop'
+gem 'rubocop-rspec'
