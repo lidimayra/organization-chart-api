@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Organization Chart API é uma API rest json de organograma de empresas construída
+em Rails.
 
-Things you may want to cover:
+## Pré-requisitos
 
-* Ruby version
+- Ruby 2.6.0
 
-* System dependencies
+## Clone o projeto
 
-* Configuration
+```
+git clone git@github.com:lidimayra/organization-chart-api.git
+cd organization-chart-api
+```
 
-* Database creation
+## Instale as dependências
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle install
+```
