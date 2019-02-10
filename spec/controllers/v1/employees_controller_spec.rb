@@ -32,4 +32,39 @@ RSpec.describe V1::EmployeesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    subject(:post_create) { post :create, params: params }
+
+    let(:attributes) { attributes_for :employee }
+    let(:params) do
+      { company_id: company.id, employee: attributes }
+    end
+
+    context 'when valid' do
+      it { expect { post_create }.to change(Employee, :count).by 1 }
+
+      it 'has a created status code' do
+        post_create
+        expect(response).to be_created
+      end
+    end
+
+    context 'when invalid' do
+      let(:attributes) { attributes_for(:employee).except(:email) }
+
+      it { expect { post_create }.not_to change(Employee, :count) }
+
+      it 'has unprocessable entity status code' do
+        post_create
+        expect(response).to be_unprocessable
+      end
+
+      it 'returns error message' do
+        post_create
+        json = JSON.parse(response.body)
+        expect(json['errors']).to eq('email' => ["can't be blank"])
+      end
+    end
+  end
 end

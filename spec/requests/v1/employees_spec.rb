@@ -16,4 +16,17 @@ RSpec.describe 'Employees endpoints', type: :request do
     it { expect(json['data'].length).to eq 2 }
     it { expect(json['data'][0].keys).to match_array %w[id type attributes] }
   end
+
+  context 'when creating an employee' do
+    let(:attributes) { attributes_for :employee }
+
+    before do
+      post "/v1/companies/#{company.id}/employees",
+           params: { employee: attributes }
+    end
+
+    it { expect(response).to be_created }
+    it { expect(json['data'].keys).to match_array %w[id type attributes] }
+    it { expect(json['data']['attributes']['name']).to eq attributes[:name] }
+  end
 end
