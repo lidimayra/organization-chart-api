@@ -19,3 +19,10 @@ cd organization-chart-api
 ```
 bundle install
 ```
+
+## Execute as migrações do banco de dados
+
+```
+rake db:create && rake db:migrate
+```
+
