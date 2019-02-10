@@ -39,3 +39,4 @@ rails s
 |v1/companies|GET|Retorna a lista de empresas registradas|
 |v1/companies/:id|GET|Retorna os dados da empresa|
 |v1/companies|POST|Cria uma nova empresa|
+|v1/companies/:company_id/employees|GET|Retorna a lista de colaboradores registrados em uma empresa|
