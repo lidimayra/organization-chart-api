@@ -9,4 +9,11 @@ class Employee < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :company, presence: true
+
+  validate :manager_belongs_to_company
+
+  def manager_belongs_to_company
+    message = 'must belong to the same company'
+    errors.add(:manager, message) if manager && manager.company != company
+  end
 end

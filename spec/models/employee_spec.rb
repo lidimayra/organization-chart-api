@@ -19,4 +19,22 @@ RSpec.describe Employee, type: :model do
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_uniqueness_of :email }
   it { is_expected.to validate_presence_of :company }
+
+  context 'when associating a manager' do
+    let(:manager) { create :employee, company: company }
+
+    before { employee.manager = manager }
+
+    context 'when manager belongs to the same company' do
+      let(:company) { employee.company }
+
+      it { expect(employee).to be_valid }
+    end
+
+    context 'when manager does not belong to the same company' do
+      let(:company) { create :company }
+
+      it { expect(employee).not_to be_valid }
+    end
+  end
 end
