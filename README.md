@@ -26,3 +26,14 @@ bundle install
 rake db:create && rake db:migrate
 ```
 
+## Suba o servidor
+
+```
+rails s
+```
+
+## Endpoints disponíveis
+
+|Path|Verbo|Descrição|
+|---|------|----------|
+|v1/companies|GET|Retorna a lista de empresas registradas|
