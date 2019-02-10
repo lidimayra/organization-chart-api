@@ -52,4 +52,38 @@ RSpec.describe V1::CompaniesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    subject(:post_create) do
+      post :create, params: { company: params }
+    end
+
+    context 'when valid' do
+      let(:params) { { name: 'Globex Corporation' } }
+
+      it { expect { post_create }.to change(Company, :count).by 1 }
+
+      it 'has a created status code' do
+        post_create
+        expect(response).to be_created
+      end
+    end
+
+    context 'when invalid' do
+      let(:params) { { name: '' } }
+
+      it { expect { post_create }.not_to change(Company, :count) }
+
+      it 'has unprocessable entity status code' do
+        post_create
+        expect(response).to be_unprocessable
+      end
+
+      it 'returns error message' do
+        post_create
+        json = JSON.parse(response.body)
+        expect(json['errors']).to eq('name' => ["can't be blank"])
+      end
+    end
+  end
 end
