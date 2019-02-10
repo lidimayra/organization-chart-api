@@ -28,7 +28,7 @@ module V1
     private
 
     def employee_params
-      params.require(:employee).permit(:name, :email, :employer_id)
+      params.require(:employee).permit(:name, :email)
     end
 
     def set_company

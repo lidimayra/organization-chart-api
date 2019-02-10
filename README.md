@@ -42,3 +42,5 @@ rails s
 |v1/companies/:company_id/employees|GET|Retorna a lista de colaboradores registrados em uma empresa|
 |v1/companies/companies_id/employees|POST|Cria um colaborador associado à empresa
 |v1/companies/companies_id/employees/:id|DELETE|Deleta o colaborador
+|v1/employees/:employer_id/managees|GET|Retorna a lista de colaboradores diretos
+liderados por um gestor

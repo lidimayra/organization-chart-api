@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :companies, only: %i[index show create] do
       resources :employees, only: %i[index create destroy]
     end
+
+    resources :employees do
+      resources :managees, only: :index
+    end
   end
 end
