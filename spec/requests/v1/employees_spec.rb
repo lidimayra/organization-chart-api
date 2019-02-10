@@ -29,4 +29,13 @@ RSpec.describe 'Employees endpoints', type: :request do
     it { expect(json['data'].keys).to match_array %w[id type attributes] }
     it { expect(json['data']['attributes']['name']).to eq attributes[:name] }
   end
+
+  context 'when destroying an employee' do
+    before do
+      employee = create(:employee, company: company)
+      delete "/v1/companies/#{company.id}/employees/#{employee.id}"
+    end
+
+    it { expect(response).to be_no_content }
+  end
 end

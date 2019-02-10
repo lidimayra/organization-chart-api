@@ -67,4 +67,22 @@ RSpec.describe V1::EmployeesController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    subject(:delete_destroy) do
+      delete :destroy,
+             params: { company_id: company.id, id: employee.id }
+    end
+
+    let!(:employee) { create :employee, company: company }
+
+    it 'destroy employee record' do
+      expect { delete_destroy }.to change(Employee, :count).from(1).to(0)
+    end
+
+    it 'returns no content' do
+      delete_destroy
+      expect(response).to be_no_content
+    end
+  end
 end

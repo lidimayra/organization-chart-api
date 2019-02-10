@@ -19,6 +19,12 @@ module V1
       end
     end
 
+    def destroy
+      employee = @company.employees.find(params[:id])
+      employee.destroy
+      head 204
+    end
+
     private
 
     def employee_params
