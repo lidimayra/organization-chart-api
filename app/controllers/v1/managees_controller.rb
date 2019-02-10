@@ -8,9 +8,5 @@ module V1
       employees = @employee.managees
       render json: employees, status: :ok
     end
-
-    def set_employee
-      @employee = Employee.find(params[:employee_id])
-    end
   end
 end
