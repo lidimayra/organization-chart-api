@@ -37,3 +37,4 @@ rails s
 |Path|Verbo|Descrição|
 |---|------|----------|
 |v1/companies|GET|Retorna a lista de empresas registradas|
+|v1/companies/:id|GET|Retorna os dados da empresa|

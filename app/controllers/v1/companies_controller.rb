@@ -6,5 +6,10 @@ module V1
       companies = Company.all
       render json: companies, status: :ok
     end
+
+    def show
+      company = Company.find(params[:id])
+      render json: company
+    end
   end
 end

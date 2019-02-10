@@ -15,4 +15,13 @@ RSpec.describe 'Companies endpoints', type: :request do
     it { expect(json['data'].length).to eq 2 }
     it { expect(json['data'][0].keys).to match_array %w[id type attributes] }
   end
+
+  context 'when displaying a company' do
+    let(:company) { create :company }
+
+    before { get "/v1/companies/#{company.id}" }
+
+    it { expect(response).to be_success }
+    it { expect(json['data'].keys).to match_array %w[id type attributes] }
+  end
 end

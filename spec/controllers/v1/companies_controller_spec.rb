@@ -24,4 +24,32 @@ RSpec.describe V1::CompaniesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #show' do
+    subject(:get_show) { get :show, params: { id: id } }
+
+    let(:company) { create :company }
+    let(:id) { company.id }
+
+    it { expect(get_show.content_type).to eq 'application/json' }
+    it { expect(get_show).to be_ok }
+
+    context 'when checking json object content' do
+      let(:parsed_response_body) { JSON.parse(get_show.body) }
+      let(:data) { parsed_response_body['data'] }
+
+      context 'when company do not exist' do
+        let(:id) { company.id + 1 }
+
+        it { expect(get_show).to be_not_found }
+      end
+
+      context 'when company exists' do
+        before { company }
+
+        it { expect(data['id']).to eq company.id.to_s }
+        it { expect(data['attributes']['name']).to eq company.name }
+      end
+    end
+  end
 end
