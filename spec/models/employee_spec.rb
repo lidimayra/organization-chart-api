@@ -65,4 +65,20 @@ RSpec.describe Employee, type: :model do
       expect(second_level_managees.to_a).to match_array expected_list
     end
   end
+
+  describe '#siblings' do
+    subject(:siblings) { employee.siblings }
+
+    let(:company) { build :company }
+    let(:manager) { create :employee, company: company }
+    let!(:employee) do
+      create :employee, company: company, manager: manager
+    end
+    let!(:expected_siblings) do
+      create_list :employee, 3, company: company, manager: manager
+    end
+
+    it { expect(siblings.count).to eq 3 }
+    it { expect(siblings.to_a).to match_array expected_siblings }
+  end
 end

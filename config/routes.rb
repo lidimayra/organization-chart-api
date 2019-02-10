@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :employees do
       resources :managees, only: :index
       resources :second_level_managees, only: :index
+      resources :siblings, only: :index
     end
   end
 end

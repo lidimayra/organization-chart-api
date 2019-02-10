@@ -21,4 +21,8 @@ class Employee < ApplicationRecord
     manager_ids = Employee.where(manager_id: id).pluck(:id)
     Employee.where(manager_id: manager_ids)
   end
+
+  def siblings
+    Employee.where(manager_id: manager_id).where.not(id: id)
+  end
 end

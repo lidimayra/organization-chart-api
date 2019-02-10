@@ -44,3 +44,4 @@ rails s
 |v1/companies/companies_id/employees/:id|DELETE|Deleta o colaborador
 |v1/employees/:employer_id/managees|GET|Retorna a lista de colaboradores diretos liderados por um gestor
 |v1/employees/:employer_id/second_level_managees|GET|Retorna a lista dos liderados dos liderados de um colaborador (Segundo nível)
+|v1/employees/:employer_id/siblings|GET|Retorna a lista dos pares de um colaborador
