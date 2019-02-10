@@ -16,4 +16,9 @@ class Employee < ApplicationRecord
     message = 'must belong to the same company'
     errors.add(:manager, message) if manager && manager.company != company
   end
+
+  def second_level_managees
+    manager_ids = Employee.where(manager_id: id).pluck(:id)
+    Employee.where(manager_id: manager_ids)
+  end
 end

@@ -37,4 +37,32 @@ RSpec.describe Employee, type: :model do
       it { expect(employee).not_to be_valid }
     end
   end
+
+  describe '#second_level_managees' do
+    subject(:second_level_managees) do
+      top_level_manager.second_level_managees
+    end
+
+    let(:company) { build :company }
+    let(:top_level_manager) { create :employee, company: company }
+
+    let(:middle_managers) do
+      create_list :employee, 2, company: company, manager: top_level_manager
+    end
+
+    let!(:managees_1) do
+      create_list :employee, 2, company: company, manager: middle_managers[0]
+    end
+
+    let!(:managees_2) do
+      create_list :employee, 3, company: company, manager: middle_managers[1]
+    end
+
+    it { expect(second_level_managees.count).to eq 5 }
+
+    it 'returns expected list' do
+      expected_list = managees_1 + managees_2
+      expect(second_level_managees.to_a).to match_array expected_list
+    end
+  end
 end
